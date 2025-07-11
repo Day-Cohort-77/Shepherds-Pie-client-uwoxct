@@ -4,14 +4,15 @@ import { getCheeses } from "../../../services/pizzaItemsService";
 
 export const ChooseCheese = () => {
     const [allCheeses, setAllCheeses] = useState([]);
-    const [selectedCheese, setSelectedCheese] = ([]);
+    const [selectedCheese, setSelectedCheese] = useState(null);
 
     useEffect(() => {
         getCheeses().then((cheeseArray) => {
-            setAllCheeses(cheeseArray);    
+            setAllCheeses(cheeseArray);
             console.log("yummy!");
         })
     }, [])
+
 
 
     return (
@@ -19,19 +20,18 @@ export const ChooseCheese = () => {
             <h2>Cheeses</h2>
             <article className="cheeses">
                 {allCheeses.map((cheeseObj) =>
-               
-               (
-                <label key={cheeseObj.id}>
-                    <input
-                        type="radio"
-                        value="cheese"
-                        key={cheeseObj.id}
-                        id={cheeseObj.id}
-                        onChange={() => setSelectedCheese(cheeseObj.id)} >
-                    </input>
-            {cheeseObj.name} 
-            </label>   
-            )
+
+                (
+                    <label key={cheeseObj.id}>
+                        <input
+                            type="radio"
+                            value="cheese"
+                            id={cheeseObj.id}
+                            onChange={() => setSelectedCheese(cheeseObj.id)} >
+                        </input>
+                        {cheeseObj.name}
+                    </label>
+                )
                 )
                 }
             </article>

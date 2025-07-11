@@ -4,11 +4,11 @@ import { getPizzaSizes } from "../../../services/pizzaItemsService";
 
 export const ChoosePizzaSize = () => {
     const [allSizes, setAllSizes] = useState([]);
-    const [selectedSize, setSelectedSize] = ([]);
+    const [selectedSize, setSelectedSize] = useState(null);
 
     useEffect(() => {
         getPizzaSizes().then((sizesArray) => {
-            setAllSizes(sizesArray);    
+            setAllSizes(sizesArray);
             console.log("yummysize!");
         })
     }, [])
@@ -19,20 +19,19 @@ export const ChoosePizzaSize = () => {
             <h2>Sizes</h2>
             <article className="sizes">
                 {allSizes.map((sizeObj) =>
-               
-               (
-                <label key={sizeObj.id}>
-                    <input
-                        type="radio"
-                        value="size"
-                        key={sizeObj.id}
-                        id={sizeObj.id}
-                        onChange={() => setSelectedSize(sizeObj.id)} >
-                    </input>
-            {sizeObj.name}
-             ${sizeObj.cost}
-            </label>   
-            )
+
+                (
+                    <label key={sizeObj.id}>
+                        <input
+                            type="radio"
+                            value="size"
+                            id={sizeObj.id}
+                            onChange={() => setSelectedSize(sizeObj.id)} >
+                        </input>
+                        {sizeObj.name}
+                        ${sizeObj.cost}
+                    </label>
+                )
                 )
                 }
             </article>
